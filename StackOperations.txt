@@ -1,0 +1,173 @@
+#include <stdio.h>
+
+#define SIZE 5
+
+int stack[SIZE], top=-1;
+
+void push(int st);
+int pop();
+void display();
+
+int main() {
+    int choice, element;
+
+    while (1) {
+        printf("\nENTER:\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Display\n");
+        printf("4. Exit\n");
+        printf("Enter your choice (1-4): ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter the element to push: ");
+                scanf("%d", &element);
+                push(element);
+                break;
+            case 2:
+                element = pop();
+                if (element != -1) {
+                    printf("Popped %d from stack.\n", element);
+                }
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("Exit");
+                exit(0);
+            default:
+                printf("Invalid choice! Please try again.\n");
+        }
+    }
+
+    return 0;
+}
+void push(int element) {
+    if (top == SIZE - 1) {
+        printf("Stack Overflow\n");
+        return;
+    }
+    stack[++top] = element;
+}
+int pop() {
+    if (top == -1) {
+        printf("Stack Underflow\n");
+        return -1;  // Return -1 to indicate underflow
+    }
+    return stack[top--];
+}
+void display() {
+    if (top == -1) {
+        printf("Stack is empty\n");
+        return;
+    }
+    printf("Stack elements are: ");
+    for (int i = 0; i <= top; i++) {
+        printf("%d ", stack[i]);
+    }
+}
+
+
+
+OUTPUT:
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 1
+Enter the element to push: 12
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 2
+Popped 12 from stack.
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 2
+Stack Underflow
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 1
+Enter the element to push: 23
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 1
+Enter the element to push: 45
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 3
+Stack elements are: 23 45
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 1
+Enter the element to push: 56
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 1
+Enter the element to push: 67
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 1
+Enter the element to push: 78
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 1
+Enter the element to push: 89
+Stack Overflow
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 1
+Enter the element to push: 90
+Stack Overflow
+
+ENTER:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice (1-4): 4
+Exit
+Process returned 0 (0x0)   execution time : 78.781 s
+Press any key to continue.
