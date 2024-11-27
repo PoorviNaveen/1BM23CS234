@@ -1,0 +1,48 @@
+Link: https://leetcode.com/problems/palindrome-linked-list/submissions/1464237708
+//Code
+struct ListNode* reverseList(struct ListNode* head) {
+    struct ListNode* prev=NULL;
+    struct ListNode* curr=head;
+    while(curr!=NULL){
+        struct ListNode* next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+    }
+    return prev;
+}
+bool isPalindrome(struct ListNode* head) {
+        struct ListNode* ptr1=head;
+        struct ListNode* ptr2=head;
+        while(ptr2!=NULL && ptr2->next!=NULL){
+            ptr1=ptr1->next;
+            ptr2=ptr2->next->next;
+        }
+        ptr1=reverseList(ptr1);
+        ptr2=head;
+        while(ptr1!=NULL){
+            if(ptr1->val!=ptr2->val){
+                return false;
+            }
+            ptr1=ptr1->next;
+            ptr2=ptr2->next;
+        }
+        return true;
+    
+}
+//First submission
+bool isPalindrome(struct ListNode* head) {
+    struct ListNode* reverse = head;
+    struct ListNode *prev = NULL, *current = reverse, *next = NULL;
+    while (current != NULL) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    reverse = prev;
+    if(reverse==head)
+        return true;
+    else
+        return false;
+}
